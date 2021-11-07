@@ -1,17 +1,13 @@
 package com.yicj.redis.config;
 
-import com.yicj.redis.ExpireEventApp;
 import com.yicj.redis.listener.RedisMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
-//value 是启动类
-//@Import(value = ExpireEventApp.class)
 @Configuration
 public class PubsubConfiguration {
 

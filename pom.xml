@@ -14,7 +14,7 @@
         <module>redis-delay-queue2</module>
         <module>redis-lock</module>
         <module>redis-stream</module>
-        <module>redis-current-limiting</module>
+        <module>redis-rate-limit</module>
         <module>key-expire-event</module>
     </modules>
     <packaging>pom</packaging>
