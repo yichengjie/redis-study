@@ -1,4 +1,4 @@
-package com.yicj.redis.support.lettuce;
+package com.yicj.queue.support.lettuce;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
