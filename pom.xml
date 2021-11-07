@@ -15,6 +15,7 @@
         <module>redis-lock</module>
         <module>redis-stream</module>
         <module>redis-current-limiting</module>
+        <module>key-expire-event</module>
     </modules>
     <packaging>pom</packaging>
 
