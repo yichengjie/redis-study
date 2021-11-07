@@ -31,6 +31,4 @@ public class PubsubConfiguration {
         redisMessageListenerContainer.addMessageListener(redisMessageListener, expiredTopic());
         return redisMessageListenerContainer;
     }
-
-
 }

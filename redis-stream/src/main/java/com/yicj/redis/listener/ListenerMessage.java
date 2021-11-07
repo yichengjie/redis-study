@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.yicj.redis.constants.CommonConstant;
 import com.yicj.redis.model.dto.PromoUserDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.stream.StreamListener;
@@ -14,11 +15,9 @@ import java.util.Map;
 @Component
 public class ListenerMessage implements StreamListener<String, MapRecord<String, String, String>> {
 
-    private final StringRedisTemplate stringRedisTemplate ;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate ;
 
-    public ListenerMessage(StringRedisTemplate stringRedisTemplate) {
-        this.stringRedisTemplate = stringRedisTemplate;
-    }
 
     @Override
     public void onMessage(MapRecord<String, String, String> entries) {

@@ -7,6 +7,12 @@ spring:
     port: 6379
     timeout: 30000ms
     database: 0
+    lettuce:
+      pool:
+        max-active: ${redis.config.maxTotal:1024}
+        max-idle: ${redis.config.maxIdle:50}
+        min-idle: ${redis.config.minIdle:1}
+        max-wait: ${redis.config.maxWaitMillis:5000}
 
 
 
