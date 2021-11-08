@@ -3,6 +3,7 @@ package com.yicj.queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @Author: yicj1
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @Version: V1.0
  **/
 // https://www.jianshu.com/p/6bddbfa52cef
+@EnableScheduling
 @EnableAspectJAutoProxy
 @SpringBootApplication
 public class QueueApplication {

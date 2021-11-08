@@ -2,6 +2,7 @@ package com.yicj.redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @Author: yicj1
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description: //TODO 启动类
  * @Version: V1.0
  **/
+@EnableScheduling
 @SpringBootApplication
 public class RedisApp {
 
