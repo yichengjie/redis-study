@@ -1,8 +1,8 @@
 package com.yicj.redis.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.yicj.redis.model.PromoUserDTO;
-import com.yicj.redis.model.PromoUserVo;
+import com.yicj.redis.model.PromoUserTaskDTO;
+import com.yicj.redis.model.PromoUserTaskVO;
 import com.yicj.redis.support.stream.impl.AbstractStreamService;
 import com.yicj.redis.support.stream.StreamInfoVo;
 import com.yicj.redis.service.PromoStreamService;
@@ -25,13 +25,13 @@ public class PromoStreamServiceImpl extends AbstractStreamService implements Pro
     }
 
     @Override
-    public String addTask(PromoUserDTO dto) {
+    public String addTask(PromoUserTaskDTO dto) {
         Map<String, Object> mapValue = BeanUtil.beanToMap(dto);
         return this.add(STREAM_NAME, mapValue);
     }
 
     @Override
-    public List<PromoUserVo> listAllTask() {
+    public List<PromoUserTaskVO> listAllTask() {
         List<StreamInfoVo> list = this.list(STREAM_NAME);
         if (CollectionUtils.isEmpty(list)){
             return Collections.EMPTY_LIST ;
@@ -43,15 +43,15 @@ public class PromoStreamServiceImpl extends AbstractStreamService implements Pro
     }
 
 
-    private PromoUserVo convert2PromoUserVo(StreamInfoVo item){
+    private PromoUserTaskVO convert2PromoUserVo(StreamInfoVo item){
         String id = item.getId();
         Map<Object, Object> map = item.getValue();
-        PromoUserVo promoUserVo = new PromoUserVo();
+        PromoUserTaskVO promoUserVo = new PromoUserTaskVO();
         promoUserVo.setMsgId(id);
         return BeanUtil.fillBeanWithMap(map, promoUserVo, true);
     }
 
-    private boolean checkPromoUserVoNotEmpty(PromoUserVo vo){
+    private boolean checkPromoUserVoNotEmpty(PromoUserTaskVO vo){
         if (StringUtils.isNotBlank(vo.getPromoId()) && StringUtils.isNotBlank(vo.getUserCode())){
             return true ;
         }

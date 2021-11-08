@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PromoUserDTO implements Serializable {
+public class PromoUserTaskDTO implements Serializable {
     private String promoId ;
     private String userCode ;
 }

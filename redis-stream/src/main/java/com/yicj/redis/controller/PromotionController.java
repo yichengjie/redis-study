@@ -1,8 +1,8 @@
 package com.yicj.redis.controller;
 
 import com.yicj.redis.model.PromoRequest;
-import com.yicj.redis.model.PromoUserDTO;
-import com.yicj.redis.model.PromoUserVo;
+import com.yicj.redis.model.PromoUserTaskDTO;
+import com.yicj.redis.model.PromoUserTaskVO;
 import com.yicj.redis.service.PromoStreamService;
 import com.yicj.redis.utils.RedisUtil;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class PromotionController {
         request.getOwnerList()
             .stream()
             .forEach(userCode ->{
-                PromoUserDTO vo = new PromoUserDTO(request.getPromoId(), userCode) ;
+                PromoUserTaskDTO vo = new PromoUserTaskDTO(request.getPromoId(), userCode) ;
                 String id = promoStreamService.addTask(vo);
                 retList.add(id) ;
             });
@@ -37,7 +37,7 @@ public class PromotionController {
     }
 
     @GetMapping("/list")
-    public List<PromoUserVo> list(){
+    public List<PromoUserTaskVO> list(){
         return promoStreamService.listAllTask();
     }
 
