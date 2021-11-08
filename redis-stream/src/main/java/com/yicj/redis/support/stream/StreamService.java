@@ -1,6 +1,6 @@
-package com.yicj.redis.service;
+package com.yicj.redis.support.stream;
 
-import com.yicj.redis.model.vo.StreamInfoVo;
+import com.yicj.redis.support.stream.StreamInfoVo;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import java.util.List;
 import java.util.Map;

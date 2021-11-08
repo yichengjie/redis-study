@@ -1,4 +1,4 @@
-package com.yicj.redis.model.request;
+package com.yicj.redis.model;
 
 import lombok.Data;
 import java.io.Serializable;

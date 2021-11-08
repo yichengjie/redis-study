@@ -1,7 +1,7 @@
-package com.yicj.redis.service.impl;
+package com.yicj.redis.support.stream.impl;
 
-import com.yicj.redis.model.vo.StreamInfoVo;
-import com.yicj.redis.service.StreamService;
+import com.yicj.redis.support.stream.StreamInfoVo;
+import com.yicj.redis.support.stream.StreamService;
 import org.springframework.data.domain.Range;
 import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.connection.stream.RecordId;

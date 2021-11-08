@@ -1,7 +1,7 @@
 package com.yicj.redis.config;
 
 import com.yicj.redis.constants.CommonConstant;
-import com.yicj.redis.listener.ListenerMessage;
+import com.yicj.redis.listener.PromoMessageListener;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ import java.time.Duration;
 public class RedisStreamConfig {
 
     @Autowired
-    private ListenerMessage streamListener;
+    private PromoMessageListener streamListener;
 
     @Bean
     public Subscription subscription(RedisConnectionFactory factory){

@@ -17,6 +17,7 @@ public class LettuceConnectionValidTask   {
 
     @Scheduled(cron="0/2 * * * * ?")
     public void task() {
+        log.info("------> validate redis conn ...");
         if(redisConnectionFactory instanceof LettuceConnectionFactory){
             LettuceConnectionFactory c=(LettuceConnectionFactory)redisConnectionFactory;
             c.validateConnection();

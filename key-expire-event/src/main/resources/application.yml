@@ -9,7 +9,8 @@ spring:
     database: 0
     lettuce:
       pool:
-        max-active: ${redis.config.maxTotal:1024}
-        max-idle: ${redis.config.maxIdle:50}
-        min-idle: ${redis.config.minIdle:1}
-        max-wait: ${redis.config.maxWaitMillis:5000}
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
+        max-wait: 5000
+

@@ -2,7 +2,7 @@ package com.yicj.redis.listener;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.yicj.redis.constants.CommonConstant;
-import com.yicj.redis.model.dto.PromoUserDTO;
+import com.yicj.redis.model.PromoUserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.MapRecord;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Slf4j
 @Component
-public class ListenerMessage implements StreamListener<String, MapRecord<String, String, String>> {
+public class PromoMessageListener implements StreamListener<String, MapRecord<String, String, String>> {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate ;

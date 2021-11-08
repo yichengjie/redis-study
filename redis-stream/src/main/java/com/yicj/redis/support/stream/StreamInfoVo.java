@@ -1,4 +1,4 @@
-package com.yicj.redis.model.vo;
+package com.yicj.redis.support.stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
 package com.yicj.redis.controller;
 
-import com.yicj.redis.model.request.PromoRequest;
-import com.yicj.redis.model.dto.PromoUserDTO;
-import com.yicj.redis.model.vo.PromoUserVo;
+import com.yicj.redis.model.PromoRequest;
+import com.yicj.redis.model.PromoUserDTO;
+import com.yicj.redis.model.PromoUserVo;
 import com.yicj.redis.service.PromoStreamService;
 import com.yicj.redis.utils.RedisUtil;
 import org.springframework.web.bind.annotation.GetMapping;

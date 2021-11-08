@@ -1,8 +1,8 @@
 package com.yicj.redis.service;
 
 import com.yicj.redis.constants.CommonConstant;
-import com.yicj.redis.model.dto.PromoUserDTO;
-import com.yicj.redis.model.vo.PromoUserVo;
+import com.yicj.redis.model.PromoUserDTO;
+import com.yicj.redis.model.PromoUserVo;
 
 import java.util.List;
 

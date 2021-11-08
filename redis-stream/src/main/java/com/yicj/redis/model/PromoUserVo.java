@@ -1,4 +1,4 @@
-package com.yicj.redis.model.vo;
+package com.yicj.redis.model;
 
 import lombok.Data;
 

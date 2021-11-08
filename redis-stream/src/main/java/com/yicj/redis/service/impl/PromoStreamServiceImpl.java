@@ -1,9 +1,10 @@
 package com.yicj.redis.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.yicj.redis.model.dto.PromoUserDTO;
-import com.yicj.redis.model.vo.PromoUserVo;
-import com.yicj.redis.model.vo.StreamInfoVo;
+import com.yicj.redis.model.PromoUserDTO;
+import com.yicj.redis.model.PromoUserVo;
+import com.yicj.redis.support.stream.impl.AbstractStreamService;
+import com.yicj.redis.support.stream.StreamInfoVo;
 import com.yicj.redis.service.PromoStreamService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
