@@ -5,14 +5,14 @@ import com.yicj.redis.constants.CommonConstant;
 import com.yicj.redis.enums.RedisKey;
 import com.yicj.redis.model.PromoUserTaskDTO;
 import com.yicj.redis.service.PromoPosterService;
+import com.yicj.redis.utils.CommonUtil;
+import com.yicj.redis.utils.RedisLockUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.stream.StreamListener;
 import org.springframework.stereotype.Component;
-import java.util.Arrays;
 import java.util.Map;
 
 @Slf4j
@@ -22,9 +22,9 @@ public class PromoMessageListener implements StreamListener<String, MapRecord<St
     @Autowired
     private StringRedisTemplate stringRedisTemplate ;
     @Autowired
-    private DefaultRedisScript<Boolean> setIfAbsentScript ;
-    @Autowired
     private PromoPosterService promoPosterService ;
+    @Autowired
+    private RedisLockUtil redisLockUtil ;
 
 
     @Override
@@ -51,8 +51,9 @@ public class PromoMessageListener implements StreamListener<String, MapRecord<St
     }
 
     private void doOnMessage(String key,String promoId, String userCode){
-        Boolean flag = stringRedisTemplate.execute(setIfAbsentScript, Arrays.asList(key), "300");
-        if (flag == null || !flag){
+        String reqId = CommonUtil.uuid();
+        boolean flag = redisLockUtil.lock(key, reqId, 300);
+        if (!flag){
             log.warn("有任务正在生成 promoId : {}, userCode: {}", promoId, userCode);
             return;
         }
@@ -60,7 +61,7 @@ public class PromoMessageListener implements StreamListener<String, MapRecord<St
         try {
             promoPosterService.gen(promoId, userCode) ;
         }finally {
-            this.stringRedisTemplate.delete(key) ;
+            redisLockUtil.unlock(key, reqId) ;
         }
     }
 

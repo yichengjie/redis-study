@@ -40,10 +40,10 @@ public class AppConfig {
 
 
     @Bean
-    public DefaultRedisScript<Boolean> setIfAbsentScript() {
-        DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript<>();
-        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("redis/set-if-absent.lua")));
-        redisScript.setResultType(Boolean.class);
+    public DefaultRedisScript<Long> unlockScript() {
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("redis/unlock.lua")));
+        redisScript.setResultType(Long.class);
         return redisScript;
     }
 
