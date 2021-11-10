@@ -9,4 +9,5 @@ public class PromoUserTaskVO implements Serializable {
     private String msgId ;
     private String promoId ;
     private String userCode ;
+    private String width ;
 }

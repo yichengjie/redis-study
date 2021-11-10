@@ -9,4 +9,5 @@ public class PromoRequest implements Serializable {
 
     private String promoId;
     private List<String> ownerList ;
+    private Integer width = 280;
 }

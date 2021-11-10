@@ -29,7 +29,7 @@ public class PromotionController {
         request.getOwnerList()
             .stream()
             .forEach(userCode ->{
-                PromoUserTaskDTO vo = new PromoUserTaskDTO(request.getPromoId(), userCode) ;
+                PromoUserTaskDTO vo = new PromoUserTaskDTO(request.getPromoId(), userCode, String.valueOf(request.getWidth())) ;
                 String id = promoStreamService.addTask(vo);
                 retList.add(id) ;
             });

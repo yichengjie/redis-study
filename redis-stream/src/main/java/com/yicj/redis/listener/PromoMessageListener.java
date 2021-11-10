@@ -8,12 +8,10 @@ import com.yicj.redis.service.PromoPosterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.MapRecord;
-import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.stream.StreamListener;
 import org.springframework.stereotype.Component;
-
 import java.util.Arrays;
 import java.util.Map;
 
@@ -34,16 +32,19 @@ public class PromoMessageListener implements StreamListener<String, MapRecord<St
         log.info("接受到来自redis的消息");
         String streamName = CommonConstant.PROMO_POSTER_TASK_STREAM_KEY ;
         String messageId = entries.getId().getValue();
+        Map<String, String> map = entries.getValue();
+        PromoUserTaskDTO promoUserVo = new PromoUserTaskDTO();
+        BeanUtil.fillBeanWithMap(map, promoUserVo,true) ;
+        System.out.println("promoUserVo : "+ promoUserVo);
+        String promoId = promoUserVo.getPromoId();
+        String userCode = promoUserVo.getUserCode();
+        String keyTemplate = RedisKey.PROMOTION_GEN_EXECUTING.getKey() ;
+        String key = String.format(keyTemplate, promoId, userCode);
         try {
-            Map<String, String> map = entries.getValue();
-            PromoUserTaskDTO promoUserVo = new PromoUserTaskDTO();
-            BeanUtil.fillBeanWithMap(map, promoUserVo,true) ;
-            System.out.println("promoUserVo : "+ promoUserVo);
-            String promoId = promoUserVo.getPromoId();
-            String userCode = promoUserVo.getUserCode();
-            String keyTemplate = RedisKey.PROMOTION_GEN_EXECUTING.getKey() ;
-            String key = String.format(keyTemplate, promoId, userCode);
             this.doOnMessage(key, promoId, userCode);
+        }catch (Exception e){
+            // 异常抛出后，后续任务将会全部取消
+            log.error("处理消息出错!!!!!", e);
         }finally {
             stringRedisTemplate.opsForStream().delete(streamName, messageId) ;
         }
