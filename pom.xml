@@ -17,6 +17,7 @@
         <module>redis-rate-limit</module>
         <module>key-expire-event</module>
         <module>redis-serial</module>
+        <module>redis-list-queue</module>
     </modules>
     <packaging>pom</packaging>
 
