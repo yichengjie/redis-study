@@ -48,4 +48,20 @@ public class RedisConfig {
         return redisScript;
     }
 
+    @Bean
+    public DefaultRedisScript<Long> unlockScript() {
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("redis/unlock.lua")));
+        redisScript.setResultType(Long.class);
+        return redisScript;
+    }
+
+    @Bean
+    public DefaultRedisScript<Long> lockScript() {
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("redis/lock.lua")));
+        redisScript.setResultType(Long.class);
+        return redisScript;
+    }
+
 }

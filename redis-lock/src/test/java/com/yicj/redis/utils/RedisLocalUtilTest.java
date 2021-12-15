@@ -45,4 +45,17 @@ public class RedisLocalUtilTest {
         log.info("unlock flag : {}", unlock);
     }
 
+
+    @Test
+    public void lockLua(){
+        String key = "abc" ;
+        String value = CommonUtil.uuid() ;
+        try {
+            boolean lock = redisLockUtil.lock(key, value, 600);
+            log.info("lock flag : {}", lock);
+        }finally {
+            redisLockUtil.unlockLua(key,value) ;
+        }
+    }
+
 }
