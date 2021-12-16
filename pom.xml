@@ -19,6 +19,7 @@
         <module>redis-serial</module>
         <module>redis-list-queue</module>
         <module>hello-web</module>
+        <module>redis-pub-sub2</module>
     </modules>
     <packaging>pom</packaging>
 
