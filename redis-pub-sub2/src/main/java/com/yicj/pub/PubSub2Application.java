@@ -12,9 +12,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @create: 2021-12-16 10:33
  **/
 @SpringBootApplication
-public class PubSubApplication {
+public class PubSub2Application {
     public static void main(String[] args) {
-        ConfigurableApplicationContext ct = SpringApplication.run(PubSubApplication.class, args);
+        ConfigurableApplicationContext ct = SpringApplication.run(PubSub2Application.class, args);
         StringRedisTemplate template = ct.getBean(StringRedisTemplate.class);
     }
 }

@@ -20,6 +20,7 @@
         <module>redis-list-queue</module>
         <module>hello-web</module>
         <module>redis-pub-sub2</module>
+        <module>redis-pub-sub3</module>
     </modules>
     <packaging>pom</packaging>
 
