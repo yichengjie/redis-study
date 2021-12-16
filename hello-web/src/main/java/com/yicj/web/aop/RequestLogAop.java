@@ -1,7 +1,7 @@
-package com.yicj.redis.aop;
+package com.yicj.web.aop;
 
 import com.google.common.collect.Lists;
-import com.yicj.redis.util.AopUtil;
+import com.yicj.web.util.AopUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class RequestLogAop {
      * @param
      * @return
      */
-    @Before("execution(public * com.yicj.redis.controller.*.*(..))")
+    @Before("execution(public * com.yicj.web.controller.*.*(..))")
     public void before(JoinPoint joinPoint) {
 
         try {

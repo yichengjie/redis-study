@@ -1,4 +1,4 @@
-package com.yicj.redis.util;
+package com.yicj.web.util;
 
 import com.alibaba.fastjson.JSONObject;
 import javassist.*;

@@ -18,6 +18,7 @@
         <module>key-expire-event</module>
         <module>redis-serial</module>
         <module>redis-list-queue</module>
+        <module>hello-web</module>
     </modules>
     <packaging>pom</packaging>
 
