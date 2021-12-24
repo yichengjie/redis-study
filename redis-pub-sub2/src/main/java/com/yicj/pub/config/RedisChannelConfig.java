@@ -8,14 +8,17 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 public class RedisChannelConfig {
     @Bean
-    public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
-                                            MessageListenerAdapter listenerAdapter) {
+    public RedisMessageListenerContainer container(
+            RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter,
+            ThreadPoolTaskExecutor threadPoolTaskExecutor) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
+        container.setTaskExecutor(threadPoolTaskExecutor);
         //订阅主题messagePush和messagePush3
         container.addMessageListener(listenerAdapter, new PatternTopic("messagePush"));
         // 添加多个订阅者

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yicj.pub.listener.MessageReceiveOne;
 import com.yicj.pub.listener.MessageReceiveTwo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -14,10 +15,10 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 public class RedisConfig {
-
 
     @Bean
     public RedisTemplate<String,Object> redisTemplate(JedisConnectionFactory redisConnectionFactory){
@@ -41,10 +42,12 @@ public class RedisConfig {
 
 
     @Bean
-    public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
-                   MessageListenerAdapter listenerAdapter2,MessageListenerAdapter listenerAdapter) {
+    public RedisMessageListenerContainer container(
+            RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter2,
+            MessageListenerAdapter listenerAdapter, ThreadPoolTaskExecutor threadPoolTaskExecutor) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
+        container.setTaskExecutor(threadPoolTaskExecutor);
         //订阅多个频道
         container.addMessageListener(listenerAdapter,new PatternTopic("fullDataUpload"));
         container.addMessageListener(listenerAdapter2,new PatternTopic("fullDataUpload"));
@@ -74,5 +77,8 @@ public class RedisConfig {
         //这个地方 是给messageListenerAdapter 传入一个消息接受的处理器，利用反射的方法调用“MessageReceiveOne ”
         return new MessageListenerAdapter(receiver,"getMessage");
     }
+
+
+
 
 }
