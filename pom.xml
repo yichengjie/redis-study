@@ -21,6 +21,7 @@
         <module>hello-web</module>
         <module>redis-pub-sub2</module>
         <module>redis-pub-sub3</module>
+        <module>hello-javassist</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -126,6 +127,12 @@
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>3.24.0-GA</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.28.0-GA</version>
             </dependency>
 
         </dependencies>
