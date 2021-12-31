@@ -1,5 +1,6 @@
 package com.yicj.study.service;
 
+import com.yicj.study.service.impl.UserService;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -15,7 +16,11 @@ import java.lang.reflect.Method;
  **/
 public class UpdateUserService {
 
-    public static void update() throws Exception{
+    //private UserService orgUserService = new UserService();
+
+    //https://www.cnblogs.com/chiangchou/p/javassist.html
+    //https://www.jianshu.com/p/77fa83851d8f
+    public CtClass update() throws Exception{
         ClassPool pool = ClassPool.getDefault() ;
         CtClass cc = pool.get("com.yicj.study.service.impl.UserService");
         CtMethod userFly = cc.getDeclaredMethod("userFly");
@@ -26,6 +31,10 @@ public class UpdateUserService {
         ctMethod.setModifiers(Modifier.PUBLIC);
         ctMethod.setBody("{System.out.println(\"i want to be your friend\") ;}");
         cc.addMethod(ctMethod);
+        return cc ;
+    }
+
+    public void updateMain(CtClass cc) throws Exception{
         //
         Object user = cc.toClass().newInstance();
         // 调用userFly方法
@@ -36,8 +45,25 @@ public class UpdateUserService {
         execute.invoke(user) ;
     }
 
+
+
+    public  void updateMain2(CtClass cc) throws Exception{
+        Class<?> clazz = cc.toClass();
+        UserService service = new UserService() ;
+        service.userFly();
+        //
+        /*System.out.println("================================");
+        IUserService userService = (IUserService)clazz.newInstance();
+        userService.userFly();*/
+        System.out.println("==================================");
+        //orgUserService.userFly();
+    }
+
     public static void main(String[] args) throws Exception {
-        update();
+        UpdateUserService updater = new UpdateUserService();
+        CtClass cc = updater.update();
+        //updateMain(cc);
+        updater.updateMain2(cc);
     }
 
 }
