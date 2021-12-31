@@ -22,6 +22,7 @@
         <module>redis-pub-sub2</module>
         <module>redis-pub-sub3</module>
         <module>hello-javassist</module>
+        <module>hello-agent</module>
     </modules>
     <packaging>pom</packaging>
 

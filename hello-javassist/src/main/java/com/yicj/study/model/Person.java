@@ -1,6 +1,5 @@
 package com.yicj.study.model;
 
-import lombok.Data;
 
 /**
  * @program: redis-study
@@ -14,8 +13,6 @@ public class Person {
     private Integer age ;
 
     public String hello(String name){
-
-
 
         return "hello : " + name ;
     }

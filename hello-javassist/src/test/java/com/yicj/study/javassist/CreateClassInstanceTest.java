@@ -26,6 +26,8 @@ public class CreateClassInstanceTest {
         cc.addMethod(method01);
         cc.addMethod(method02);
         // 添加有参构造函器
+        //CtConstructor constructor= CtNewConstructor.make("public User(int id,String name){this.id=id; this.name=name;}",ctClass);
+        //cc.addConstructor(constructor);
         CtConstructor constructor = new CtConstructor(new CtClass[]{CtClass.intType, pool.get("java.lang.String")},cc) ;
         constructor.setBody("{this.id = $1; this.name = $1;}");
         cc.addConstructor(constructor);
