@@ -19,7 +19,7 @@ public class BizServiceTest {
     @Test
     public void main() throws Exception{
         ClassPool pool = ClassPool.getDefault();
-        CtClass clazz = pool.getOrNull("com.yicj.study.service.BizService");
+        CtClass clazz = pool.getOrNull("com.yicj.study.service.impl.BizService");
         CtMethod bizProcessMethod = clazz.getDeclaredMethod("bizProcess");
         StringBuffer sb = new StringBuffer() ;
         sb.append("{") ;
